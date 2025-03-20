@@ -1,3 +1,5 @@
+test commit
+
 Optimizing Inventory Costs with (s, Q) Policy Simulation
 Inventory management is all about balancing costs while ensuring smooth operations. I recently ran a simulation of the (s, Q) policy to optimize inventory costs, where the goal was to determine the optimal order quantity (Q) that minimizes total costs.
 
