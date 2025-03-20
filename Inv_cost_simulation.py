@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from scipy.interpolate import make_interp_spline
+from sympy import false
 
 
 def simulate_inventory_policy(poisson_lambda, periods, holding_cost_rate, shortage_cost_rate, ordering_cost, s, Q_values, lead_time=2):
@@ -102,8 +103,7 @@ ax.plot(Q_smooth, ordering_smooth, linestyle='-', label="Ordering Cost", color="
 ax.plot(Q_smooth, holding_smooth, linestyle='-', label="Holding Cost", color="green")
 ax.plot(Q_smooth, shortage_smooth, linestyle='-', label="Shortage Cost", color="red")
 ax.plot(Q_smooth, total_smooth, linestyle='--', label="Total Cost", color="black", linewidth=2)
-
-
+ax.set_xlim(0, 100)
 
 # Mark the optimal Q
 ax.axvline(optimal_Q, color='black', linestyle='dotted', label=f"Optimal Q = {optimal_Q}")
@@ -116,6 +116,17 @@ ax.set_ylabel("Cost")
 ax.set_title("Cost vs. Order Quantity")
 ax.legend()
 ax.grid(True)
+plt.grid(True)
+#plt.show()
+manager = plt.get_current_fig_manager()
+try:
+    manager.window.wm_geometry("+100+100")  # For TkAgg backend
+except AttributeError:
+    manager.window.move(100, 100)  # For Qt5Agg backend
+plt.text(88, 115, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
+plt.text(88, 0, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
+#plt.show()
+
 plt.show()
 
 # ---- Animated Demand & Inventory Plot ----
@@ -129,9 +140,9 @@ ax1.set_ylim(0, max(optimal_demand) + 5)
 ax1.set_xlabel("Time Period")
 ax1.set_ylabel("Demand")
 ax1.set_title("Demand Over Time-Assuming Poisson Distribution with lambda=10")
-ax1.grid(True)
+ax1.grid(False)
 
-bars_demand = ax1.bar(range(periods), [0] * periods, color="green", label="Demand")
+bars_demand = ax1.bar(range(periods), [0] * periods, color="lightblue", label="Demand")
 ax1.legend()
 
 # ---- Inventory Levels Over Time (Step Plot) ----
@@ -141,7 +152,7 @@ ax2.set_ylim(0, max(max(optimal_inventory_levels) + 5, s * 1.5))
 ax2.set_xlabel("Time Period")
 ax2.set_ylabel("Inventory Level")
 ax2.set_title(f"Inventory Levels Over Time (Optimal Q = {optimal_Q}, s = {s} and Lead Time = {lead_time} \n Total Cost = {min(total_costs)},ordering cost = {ordering_cost}/Order,holding cost = {holding_cost_rate}/day/unit,shortage cost = {shortage_cost_rate}/event")
-ax2.grid(True)
+ax2.grid(False)
 
 line_inventory, = ax2.step([], [], where='mid', linestyle='-', color="blue", label="Inventory Level")
 ax2.axhline(s, color='red', linestyle='dotted', label="Reorder Level (s)")
@@ -176,5 +187,17 @@ def update(frame):
 
 # Create animation
 ani = animation.FuncAnimation(fig, update, frames=periods, interval=300, blit=False)
+plt.grid(False)
+#plt.show()
+
+
+manager = plt.get_current_fig_manager()
+try:
+    manager.window.wm_geometry("+100+60")  # For TkAgg backend
+except AttributeError:
+    manager.window.move(100, 100)  # For Qt5Agg backend
+plt.text(88, 115, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
+plt.text(88, 0, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
+#plt.show()
 
 plt.show()
