@@ -14,7 +14,8 @@ Some key AI-driven inventory simulation scenarios that could reshape the industr
 
 As these technologies advance, inventory simulation will become a critical tool for retailers to enhance agility, improve margins, and align stock levels with ever-changing consumer behavior.
 
-Optimizing Inventory Costs with (s, Q) Policy Simulation
+**Optimizing Inventory Costs with (s, Q) Policy Simulation**
+
 Inventory management is all about balancing costs while ensuring smooth operations. I recently ran a simulation of the (s, Q) policy to optimize inventory costs, where the goal was to determine the optimal order quantity (Q) that minimizes total costs.
 
 Key insights from the simulation :
